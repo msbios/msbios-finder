@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * CKFinder Configuration File
+ * For the official documentation visit http://docs.cksource.com/ckfinder3-php/
+ *
+ * @access protected
+ */
+namespace MSBios\Finder;
+
+return [
+
+    Module::class => [
+
+        /**
+         * @link http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_backends
+         */
+        'backends' => [
+            [
+                'name' => 'default',
+                'adapter' => 'local',
+                'baseUrl' => 'userfiles',
+                'chmodFiles' => 0777,
+                'chmodFolders' => 0755,
+                'filesystemEncoding' => 'UTF-8',
+            ]
+        ],
+    ]
+];
