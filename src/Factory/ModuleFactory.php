@@ -7,10 +7,9 @@
 namespace MSBios\Finder\Factory;
 
 use Interop\Container\ContainerInterface;
-use MSBios\Finder\Config\Config;
 use MSBios\Finder\Module;
+use Zend\Config\Config;
 use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Class ModuleFactory
@@ -26,22 +25,14 @@ class ModuleFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /** @var array $config */
-        $config = $container->get('config');
+        /** @var array $options */
+        $options = $container->get('config')[Module::class];
 
         // TODO: Надо переделать
-        $config[Module::class]['authentication'] = function () {
+        $options['authentication'] = function () {
             return true;
         };
 
-        return new Config($config[Module::class]);
-    }
-
-    /**
-     * @param ServiceLocatorInterface $serviceLocator
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        // TODO: Implement createService() method.
+        return new Config($options);
     }
 }
